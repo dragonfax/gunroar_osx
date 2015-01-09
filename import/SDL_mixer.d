@@ -27,6 +27,7 @@
 import SDL;
 import SDL_Version;
 import SDL_audio;
+import SDL_rwops;
 
 extern (C) {
 

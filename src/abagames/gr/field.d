@@ -34,7 +34,7 @@ public class Field {
   static const float SIDEWALL_X1 = 18;
   static const float SIDEWALL_X2 = 9.3f;
   static const float SIDEWALL_Y = 15;
-  static const float TIME_COLOR_INDEX = 5;
+  static const int TIME_COLOR_INDEX = 5;
   static const float TIME_CHANGE_RATIO = 0.00033f;
   StageManager stageManager;
   Ship ship;

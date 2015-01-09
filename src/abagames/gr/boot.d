@@ -36,43 +36,8 @@ GameManager gameManager;
 PrefManager prefManager;
 MainLoop mainLoop;
 
-version (Win32_release) {
-  // Boot as the Windows executable.
-  private import std.c.windows.windows;
-  private import std.string;
-
-  extern (C) void gc_init();
-  extern (C) void gc_term();
-  extern (C) void _minit();
-  extern (C) void _moduleCtor();
-
-  extern (Windows)
-  public int WinMain(HINSTANCE hInstance,
-		     HINSTANCE hPrevInstance,
-		     LPSTR lpCmdLine,
-		     int nCmdShow) {
-    int result;
-    gc_init();
-    _minit();
-    try {
-      _moduleCtor();
-      char exe[4096];
-      GetModuleFileNameA(null, exe, 4096);
-      char[][1] prog;
-      prog[0] = std.string.toString(exe);
-      result = boot(prog ~ std.string.split(std.string.toString(lpCmdLine)));
-    } catch (Object o) {
-      Logger.error("Exception: " ~ o.toString());
-      result = EXIT_FAILURE;
-    }
-    gc_term();
-    return result;
-  }
-} else {
-  // Boot as the general executable.
-  public int main(char[][] args) {
-    return boot(args);
-  }
+public int main(char[][] args) {
+  return boot(args);
 }
 
 public int boot(char[][] args) {
@@ -217,7 +182,7 @@ private void parseArgs(char[][] commandArgs) {
   }
 }
 
-private final const char[] OPTIONS_INI_FILE = "options.ini";
+private const char[] OPTIONS_INI_FILE = "options.ini";
 
 private char[][] readOptionsIniFile() {
   try {
