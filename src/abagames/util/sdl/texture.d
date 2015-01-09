@@ -9,6 +9,7 @@ private import std.string;
 private import opengl;
 private import openglu;
 private import SDL;
+private import SDL_video;
 private import abagames.util.sdl.sdlexception;
 
 /**
@@ -21,8 +22,8 @@ public class Texture {
  private:
   GLuint num, maskNum;
   int textureNum, maskTextureNum;
-  Uint32[128 * 128] pixels;
-  Uint32[128 * 128] maskPixels;
+  uint[128 * 128] pixels;
+  uint[128 * 128] maskPixels;
 
   public static SDL_Surface* loadBmp(char[] name) {
     if (name in surface) {
@@ -66,15 +67,15 @@ public class Texture {
   }
 
   public this(char[] name, int sx, int sy, int xn, int yn, int panelWidth, int panelHeight,
-              Uint32 maskColor = 0xffffffffu) {
+              uint maskColor = 0xffffffffu) {
     SDL_Surface *s = loadBmp(name);
-    Uint32* surfacePixels = cast(Uint32*) s.pixels;
+    uint* surfacePixels = cast(uint*) s.pixels;
     this(surfacePixels, s.w, sx, sy, xn, yn, panelWidth, panelHeight, maskColor);
   }
 
-  public this(Uint32* surfacePixels, int surfaceWidth,
+  public this(uint* surfacePixels, int surfaceWidth,
               int sx, int sy, int xn, int yn, int panelWidth, int panelHeight,
-              Uint32 maskColor = 0xffffffffu) {
+              uint maskColor = 0xffffffffu) {
     textureNum = xn * yn;
     glGenTextures(textureNum, &num);
     if (maskColor != 0xffffffffu) {
@@ -87,8 +88,8 @@ public class Texture {
         int pi = 0;
         for (int y = 0; y < panelHeight; y++) {
           for (int x = 0; x < panelWidth; x++) {
-            Uint32 p = surfacePixels[ox * panelWidth + x + sx + (oy * panelHeight + y + sy) * surfaceWidth];
-            Uint32 m;
+            uint p = surfacePixels[ox * panelWidth + x + sx + (oy * panelHeight + y + sy) * surfaceWidth];
+            uint m;
             if (p == maskColor) {
               p = 0xff000000u;
               m = 0x00ffffffu;

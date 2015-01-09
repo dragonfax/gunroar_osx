@@ -26,7 +26,6 @@ import SDL_error;
 import SDL_rwops;
 import SDL_timer;
 import SDL_audio;
-import SDL_cdrom;
 import SDL_joystick;
 import SDL_events;
 import SDL_video;

@@ -6,7 +6,7 @@
 module abagames.util.rand;
 
 private import std.stream;
-private import std.date;
+private import std.datetime;
 
 /**
  * Random number generator.

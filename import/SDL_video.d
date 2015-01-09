@@ -132,7 +132,7 @@ const uint SDL_SRCALPHA	= 0x00010000;	/* Blit uses source alpha blending */
 const uint SDL_PREALLOC	= 0x01000000;	/* Surface uses preallocated memory */
 
 /* Evaluates to true if the surface needs to be locked before access */
-bit SDL_MUSTLOCK(SDL_Surface *surface)
+bool SDL_MUSTLOCK(SDL_Surface *surface)
 {
 	return surface.offset || ((surface.flags &
 		(SDL_HWSURFACE | SDL_ASYNCBLIT | SDL_RLEACCEL)) != 0);
@@ -186,7 +186,7 @@ struct SDL_Overlay {
 	/* Special flags */
 	union
 	{
-		bit hw_overlay;
+		bool hw_overlay;
 		Uint32 _dummy;
 	}
 //		Uint32 hw_overlay :1;	/* Flag: This overlay hardware accelerated? */

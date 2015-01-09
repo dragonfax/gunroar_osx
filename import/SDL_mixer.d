@@ -25,6 +25,8 @@
 /* $Id: SDL_mixer.d,v 1.1.1.1 2005/06/18 00:46:00 kenta Exp $ */
 
 import SDL;
+import SDL_Version;
+import SDL_audio;
 
 extern (C) {
 
@@ -58,9 +60,9 @@ extern (C) {
 /* The internal format for an audio chunk */
 	struct Mix_Chunk {
 		int allocated;
-		Uint8 *abuf;
-		Uint32 alen;
-		Uint8 volume;		/* Per-sample volume, 0-128 */
+		ubyte *abuf;
+		uint alen;
+		ubyte volume;		/* Per-sample volume, 0-128 */
 	}
 
 /* The different fading types supported */
@@ -87,7 +89,7 @@ extern (C) {
 	struct Mix_Music {}
 
 /* Open the mixer with a certain audio format */
-	int Mix_OpenAudio(int frequency, Uint16 format, int channels,
+	int Mix_OpenAudio(int frequency, ushort format, int channels,
 					  int chunksize);
 
 /* Dynamically change the number of channels managed by the mixer.
@@ -100,7 +102,7 @@ extern (C) {
 /* Find out what the actual audio device parameters are.
    This function returns 1 if the audio has been opened, 0 otherwise.
 */
-	int Mix_QuerySpec(int *frequency,Uint16 *format,int *channels);
+	int Mix_QuerySpec(int *frequency,ushort *format,int *channels);
 
 /* Load a wave file or a music (.mod .s3m .it .xm) file */
 	Mix_Chunk * Mix_LoadWAV_RW(SDL_RWops *src, int freesrc);
@@ -110,10 +112,10 @@ extern (C) {
 	Mix_Music * Mix_LoadMUS(char *file);
 
 /* Load a wave file of the mixer format from a memory buffer */
-	Mix_Chunk * Mix_QuickLoad_WAV(Uint8 *mem);
+	Mix_Chunk * Mix_QuickLoad_WAV(ubyte *mem);
 
 /* Load raw audio data of the mixer format from a memory buffer */
-	Mix_Chunk * Mix_QuickLoad_RAW(Uint8 *mem, Uint32 len);
+	Mix_Chunk * Mix_QuickLoad_RAW(ubyte *mem, uint len);
 
 /* Free an audio chunk previously loaded */
 	void Mix_FreeChunk(Mix_Chunk *chunk);
@@ -129,13 +131,13 @@ extern (C) {
    or add a custom mixer filter for the stream data.
 */
 	void Mix_SetPostMix(void (*mix_func)
-						(void *udata, Uint8 *stream, int len), void *arg);
+						(void *udata, ubyte *stream, int len), void *arg);
 
 /* Add your own music player or additional mixer function.
    If 'mix_func' is NULL, the default music player is re-enabled.
 */
 	void Mix_HookMusic(void (*mix_func)
-					   (void *udata, Uint8 *stream, int len), void *arg);
+					   (void *udata, ubyte *stream, int len), void *arg);
 
 /* Add your own callback when the music has finished playing.
    This callback is only called if the music finishes naturally.
@@ -303,7 +305,7 @@ extern (C) {
  *  mode is a no-op, but this call will return successful in that case.
  *  Error messages can be retrieved from Mix_GetError().
  */
-	int Mix_SetPanning(int channel, Uint8 left, Uint8 right);
+	int Mix_SetPanning(int channel, ubyte left, ubyte right);
 
 
 /* Set the position of a channel. (angle) is an integer from 0 to 360, that
@@ -343,7 +345,7 @@ extern (C) {
  *  nonzero if position effect is enabled.
  *  Error messages can be retrieved from Mix_GetError().
  */
-	int Mix_SetPosition(int channel, Sint16 angle, Uint8 distance);
+	int Mix_SetPosition(int channel, short angle, ubyte distance);
 
 
 /* Set the "distance" of a channel. (distance) is an integer from 0 to 255
@@ -373,7 +375,7 @@ extern (C) {
  *  nonzero if position effect is enabled.
  *  Error messages can be retrieved from Mix_GetError().
  */
-	int Mix_SetDistance(int channel, Uint8 distance);
+	int Mix_SetDistance(int channel, ubyte distance);
 
 
 /* Causes a channel to reverse its stereo. This is handy if the user has his

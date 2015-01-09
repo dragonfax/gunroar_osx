@@ -9,6 +9,8 @@ private import std.string;
 private import std.stream;
 private import std.math;
 private import SDL;
+private import SDL_joystick;
+private import SDL_events;
 private import abagames.util.vector;
 private import abagames.util.sdl.input;
 private import abagames.util.sdl.recordableinput;
@@ -20,7 +22,7 @@ public class TwinStick: Input {
  public:
   float rotate = 0;
   float reverse = 1;
-  Uint8 *keys;
+  ubyte *keys;
   bool enableAxis5 = false;
  private:
   SDL_Joystick *stick = null;

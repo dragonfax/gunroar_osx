@@ -8,6 +8,7 @@ module abagames.util.sdl.mouse;
 private import std.string;
 private import std.stream;
 private import SDL;
+private import SDL_events;
 private import abagames.util.sdl.input;
 private import abagames.util.sdl.recordableinput;
 private import abagames.util.sdl.screen;

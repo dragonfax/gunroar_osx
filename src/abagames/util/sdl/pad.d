@@ -8,6 +8,8 @@ module abagames.util.sdl.pad;
 private import std.string;
 private import std.stream;
 private import SDL;
+private import SDL_joystick;
+private import SDL_events;
 private import abagames.util.sdl.input;
 private import abagames.util.sdl.recordableinput;
 
@@ -16,7 +18,7 @@ private import abagames.util.sdl.recordableinput;
  */
 public class Pad: Input {
  public:
-  Uint8 *keys;
+  ubyte *keys;
   bool buttonReversed = false;
  private:
   SDL_Joystick *stick = null;

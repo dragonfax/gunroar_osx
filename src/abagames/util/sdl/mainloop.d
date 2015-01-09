@@ -6,6 +6,7 @@
 module abagames.util.sdl.mainloop;
 
 private import SDL;
+private import SDL_events;
 private import abagames.util.logger;
 private import abagames.util.rand;
 private import abagames.util.prefmanager;
