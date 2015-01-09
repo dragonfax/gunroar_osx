@@ -16,7 +16,7 @@ private import abagames.util.sdl.sound;
  */
 public class SoundManager: abagames.util.sdl.sound.SoundManager {
  private static:
-  char[][] seFileName =
+  string[] seFileName =
     ["shot.wav", "lance.wav", "hit.wav",
      "turret_destroyed.wav", "destroyed.wav", "small_destroyed.wav", "explode.wav",
      "ship_destroyed.wav", "ship_shield_lost.wav", "score_up.wav"];

@@ -369,7 +369,7 @@ public class InGameState: GameState {
     NORMAL, TWIN_STICK, DOUBLE_PLAY, MOUSE,
   };
   static int GAME_MODE_NUM = 4;
-  static char[][] gameModeText = ["NORMAL", "TWIN STICK", "DOUBLE PLAY", "MOUSE"];
+  static string[] gameModeText = ["NORMAL", "TWIN STICK", "DOUBLE PLAY", "MOUSE"];
   bool isGameOver;
  private:
   static const float SCORE_REEL_SIZE_DEFAULT = 0.5f;

@@ -17,7 +17,7 @@ private import abagames.util.sdl.sdlexception;
  */
 public class Texture {
  public:
-  static char[] imagesDir = "images/";
+  static string imagesDir = "images/";
   static SDL_Surface*[char[]] surface;
  private:
   GLuint num, maskNum;
